@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102c21">
+  <title>ForestGuard | Tree-Cutting Detector</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-icon">🌲</div>
+      <div>
+        <h2>ForestGuard</h2>
+        <small>AI MONITORING SYSTEM</small>
+      </div>
+    </div>
+
+    <p class="nav-label">MAIN MENU</p>
+    <button class="nav-item active" data-page="dashboard">▦ <span>Dashboard</span></button>
+    <button class="nav-item" data-page="detection">◉ <span>Detection Center</span></button>
+    <button class="nav-item" data-page="alerts">♧ <span>Incident Alerts</span><span class="nav-count" id="navCount">2</span></button>
+
+    <div class="sidebar-bottom">
+      <div class="system-status">
+        <span class="status-dot"></span>
+        <div><strong>System online</strong><small>Prototype mode</small></div>
+      </div>
+      <p>Protecting forests through early detection.</p>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="menu-button" id="menuButton" aria-label="Toggle menu">☰</button>
+      <div class="breadcrumb">ForestGuard / <strong id="breadcrumb">Dashboard</strong></div>
+      <div class="top-right"><span class="status-dot"></span> DEMO MODE <div class="avatar">FO</div></div>
+    </header>
+
+    <section class="content">
+      <div class="welcome">
+        <div>
+          <div class="eyebrow">FOREST PROTECTION NETWORK</div>
+          <h1 id="pageTitle">Forest Overview</h1>
+          <p>Monitor forest activity and review possible illegal tree-cutting incidents.</p>
+        </div>
+        <div class="date-chip" id="currentDate">📅 Loading date...</div>
+      </div>
+
+      <section class="stats">
+        <article class="panel stat-card">
+          <div class="stat-icon green">🌲</div>
+          <span class="stat-label">Forest Zones</span>
+          <strong class="stat-value">12</strong>
+          <span class="stat-note">Configured demo zones</span>
+        </article>
+        <article class="panel stat-card">
+          <div class="stat-icon blue">◉</div>
+          <span class="stat-label">Active Sensors</span>
+          <strong class="stat-value">08 / 10</strong>
+          <span class="stat-note">2 sensors offline</span>
+        </article>
+        <article class="panel stat-card">
+          <div class="stat-icon orange">⚠</div>
+          <span class="stat-label">Open Alerts</span>
+          <strong class="stat-value" id="openAlerts">2</strong>
+          <span class="stat-note">Requires officer review</span>
+        </article>
+        <article class="panel stat-card">
+          <div class="stat-icon purple">✓</div>
+          <span class="stat-label">Resolved</span>
+          <strong class="stat-value" id="resolvedAlerts">1</strong>
+          <span class="stat-note">Sample incident records</span>
+        </article>
+      </section>
+
+      <section id="dashboardPage">
+        <div class="dashboard-grid">
+          <article class="panel map-panel">
+            <div class="panel-heading">
+              <div><h3>Forest Activity Map</h3><p>Illustrative monitoring zones</p></div>
+              <span class="mini-tag">DEMO MAP</span>
+            </div>
+            <div class="forest-visual">
+              <div class="map-grid"></div>
+              <div class="forest-title">🌳 Forest Reserve <small>Sample monitoring area</small></div>
+              <button class="map-pin pin-one" data-zone="Sector 04" aria-label="Sector 04">📍<span>S04</span></button>
+              <button class="map-pin pin-two" data-zone="Sector 02" aria-label="Sector 02">📍<span>S02</span></button>
+              <button class="map-pin pin-three" data-zone="Sector 07" aria-label="Sector 07">📍<span>S07</span></button>
+              <div class="map-legend"><span>🟠 Needs review</span><span>🟢 Monitored zone</span></div>
+            </div>
+            <div class="map-footer">
+              <span>● 3 sample incidents</span>
+              <button data-goto="detection">View detection →</button>
+            </div>
+          </article>
+
+          <article class="panel sensor-panel">
+            <div class="panel-heading">
+              <div><h3>Sensor Network</h3><p>Example device status</p></div>
+              <span>📡</span>
+            </div>
+            <div class="sensor-list">
+              <div class="sensor-row"><span class="sensor-icon">◉</span><div class="sensor-name"><strong>Acoustic sensor 01</strong><small>Connected</small></div><span class="sensor-status online">Online</span></div>
+              <div class="sensor-row"><span class="sensor-icon">◉</span><div class="sensor-name"><strong>Acoustic sensor 02</strong><small>Connected</small></div><span class="sensor-status online">Online</span></div>
+              <div class="sensor-row"><span class="sensor-icon">◉</span><div class="sensor-name"><strong>Acoustic sensor 03</strong><small>No signal</small></div><span class="sensor-status offline">Offline</span></div>
+              <div class="sensor-row"><span class="sensor-icon">▣</span><div class="sensor-name"><strong>Camera node 04</strong><small>Connected</small></div><span class="sensor-status online">Online</span></div>
+              <div class="sensor-row"><span class="sensor-icon">▣</span><div class="sensor-name"><strong>Camera node 05</strong><small>No signal</small></div><span class="sensor-status offline">Offline</span></div>
+            </div>
+            <p class="demo-note">ⓘ Sensor values are simulated.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="detectionPage" class="panel detection-panel hidden">
+        <div class="panel-heading">
+          <div><h3>Acoustic Detection Center</h3><p>Review possible chainsaw-like sound events.</p></div>
+          <span>📡</span>
+        </div>
+        <div class="detection-banner">
+          <span class="banner-icon">〰</span>
+          <div><strong>Acoustic AI module — Demo</strong><p>No live microphone or trained model is connected. The events below are simulated.</p></div>
+        </div>
+        <div class="waveform" aria-label="Illustrative sound waveform"></div>
+        <h3 class="section-heading">Detection events</h3>
+        <div id="detectionEvents"></div>
+      </section>
+
+      <section class="panel alerts-panel" id="alertsPanel">
+        <div class="panel-heading alert-heading">
+          <div><h3 id="tableTitle">Recent Alerts</h3><p>Review location, detection time and incident status.</p></div>
+          <div class="search-box">⌕ <input id="searchInput" type="search" placeholder="Search alerts..." aria-label="Search alerts"></div>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>INCIDENT / LOCATION</th><th>DETECTION TYPE</th><th>TIME</th><th>SCORE</th><th>STATUS</th><th>ACTION</th></tr></thead>
+            <tbody id="alertsBody"></tbody>
+          </table>
+        </div>
+        <div class="table-footer"><span id="recordCount">3 sample records</span><button id="clearSearch">Clear search</button></div>
+      </section>
+
+      <footer><span>ForestGuard · Illegal Tree-Cutting Detector</span><span>Hackathon prototype · Demo data only</span></footer>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
